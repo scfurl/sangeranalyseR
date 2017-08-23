@@ -39,7 +39,7 @@ merge.reads <- function(readset, ref.aa.seq = NULL, minInformation = 0.5, thresh
     if(!is.null(ref.aa.seq)) {
 
         print("Correcting frameshifts in reads using amino acid reference sequence")
-        corrected = CorrectFrameshifts(myXStringSet = readset, myAAStringSet = AAStringSet(ref.aa.seq), geneticCode = genetic.code, type = 'both', processors = processors, verbose = FALSE)
+        corrected = CorrectFrameshifts(myXStringSet = readset, myAAStringSet = AAStringSet(ref.aa.seq), geneticCode = genetic.code, type = 'both', processors = processors, verbose = TRUE)
         readset = corrected$sequences
         indels = get.indel.df(corrected$indels)
         stops = as.numeric(unlist(mclapply(readset, count.stop.codons, reading.frame, genetic.code, mc.cores = processors)))
